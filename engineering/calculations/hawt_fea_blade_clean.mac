@@ -1,0 +1,119 @@
+! ==============================================================================
+! ANSYS MECHANICAL APDL SCRIPT: HAWT 10 kW ROTOR BLADE STRUCTURAL & MODAL FEA
+! Solvers: Static Stress (DLC 1.1) + Block Lanczos Modal Extraction
+! Compatible with both Interactive GUI and Batch Mode (-b)
+! ==============================================================================
+FINISH
+/CLEAR
+/FILNAME, hawt_blade_fea, 1
+/TITLE, 10 kW HAWT Rotor Blade Structural & Modal FEA
+
+/PREP7
+
+! --- 1. MATERIAL DEFINITION (E-Glass / Epoxy UD Composite) ---
+MP, EX,   1, 30.0E9     ! Young's Modulus: 30.0 GPa
+MP, PRXY, 1, 0.28       ! Poisson's Ratio
+MP, DENS, 1, 1850.0     ! Density: 1850 kg/m^3
+
+! --- 2. ELEMENT TYPE & CROSS SECTIONS ---
+ET, 1, BEAM188          ! 3D 2-Node Timoshenko Beam Element
+KEYOPT, 1, 1, 0         ! Standard integration
+KEYOPT, 1, 3, 3         ! Quadratic shape functions
+
+! Define Root Circular Solid Section (Dia 230 mm)
+SECTYPE, 1, BEAM, CSOLID
+SECDATA, 0.115, 8, 8
+
+! Define Aerodynamic Airfoil Section (NACA 4412 Mid-span: Chord 310 mm, Thickness 37.2 mm)
+SECTYPE, 2, BEAM, RECT
+SECDATA, 0.310, 0.0372, 8, 8
+
+! --- 3. GEOMETRY: 9 RADIAL STATIONS ALONG 4.5 m BLADE ---
+! Root at Z = 0.340 m, Tip at Z = 4.500 m
+K, 1, 0.0, 0.0, 0.340   ! Root flange interface
+K, 2, 0.0, 0.0, 0.365   ! Root flange shoulder
+K, 3, 0.0, 0.0, 0.500   ! Revolute cylindrical sleeve
+K, 4, 0.0, 0.0, 0.720   ! Transition to NACA 4412
+K, 5, 0.0, 0.0, 1.125   ! Maximum chord station
+K, 6, 0.0, 0.0, 2.250   ! Mid-span station
+K, 7, 0.0, 0.0, 3.600   ! Outer span station
+K, 8, 0.0, 0.0, 4.410   ! Near-tip station
+K, 9, 0.0, 0.0, 4.500   ! Blade tip
+K, 99, 1.0, 0.0, 0.0    ! Beam orientation keypoint (off-axis)
+
+! Create Lines
+L, 1, 2
+L, 2, 3
+L, 3, 4
+L, 4, 5
+L, 5, 6
+L, 6, 7
+L, 7, 8
+L, 8, 9
+
+! Assign Section 1 (Circular root) to L1, L2, L3
+LSEL, S, LINE,, 1, 3
+LATT, 1,, 1,, 99,, 1
+LESIZE, ALL, 0.05
+LMESH, ALL
+
+! Assign Section 2 (Airfoil) to L4 through L8
+LSEL, S, LINE,, 4, 8
+LATT, 1,, 1,, 99,, 2
+LESIZE, ALL, 0.05
+LMESH, ALL
+ALLSEL, ALL
+
+! --- 4. BOUNDARY CONDITIONS ---
+! Fully fixed at root flange face (Node at K1)
+DK, 1, ALL, 0.0
+
+! --- 5. MECHANICAL & AERODYNAMIC LOADS (DLC 1.1) ---
+! Distributed aerodynamic thrust: Total 1440 N across blade span
+! Effective center of thrust at r ~ 2.925 m (near K6 / K7)
+FK, 6, FX, 720.0        ! Flapwise aerodynamic thrust
+FK, 7, FX, 720.0
+
+! Centrifugal Rotation: 148 RPM = 15.50 rad/s about rotor Y-axis
+OMEGA, 0.0, 15.50, 0.0
+
+! --- 6. SOLUTION 1: STATIC PRE-STRESSED STRESS & DEFLECTION ---
+/SOLU
+ANTYPE, STATIC
+PSTRES, ON              ! Compute pre-stress matrix for modal centrifugal stiffening
+SOLVE
+FINISH
+
+! --- 7. POST-PROCESSING: STATIC DEFLECTION & REACTION ---
+/POST1
+SET, LAST
+*GET, MAX_TIP_DEF, NODE, 9, U, X
+*GET, ROOT_REACTION, NODE, 1, RF, FX
+
+/OUTPUT, C:\NaveenCADAgent\ansys_work\blade_fea_results, txt
+*STATUS, MAX_TIP_DEF
+*STATUS, ROOT_REACTION
+/OUTPUT
+FINISH
+
+! --- 8. SOLUTION 2: MODAL EXTRACTION WITH CENTRIFUGAL STIFFENING ---
+/SOLU
+ANTYPE, MODAL
+MODOPT, LANB, 6, 0.1, 100.0  ! Block Lanczos, 6 modes from 0.1 to 100 Hz
+PSTRES, ON                   ! Include centrifugal stress stiffening
+SOLVE
+FINISH
+
+! --- 9. POST-PROCESSING: MODAL FREQUENCIES ---
+/POST1
+*GET, FREQ_MODE1, MODE, 1, FREQ
+*GET, FREQ_MODE2, MODE, 2, FREQ
+*GET, FREQ_MODE3, MODE, 3, FREQ
+
+/OUTPUT, C:\NaveenCADAgent\ansys_work\blade_modal_results, txt
+*STATUS, FREQ_MODE1
+*STATUS, FREQ_MODE2
+*STATUS, FREQ_MODE3
+/OUTPUT
+FINISH
+! ==============================================================================

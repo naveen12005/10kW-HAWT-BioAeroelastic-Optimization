@@ -1,0 +1,27 @@
+# Virtual Environments
+.venv/
+.venv-wsl/
+env/
+venv/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+
+# Temporary simulation and log files
+*.log
+*.err
+*.out
+*.db
+scratch/
+
+# OS and Editor metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Siemens NX in-memory translator parts (can be re-imported anytime from STEP)
+output/*.prt

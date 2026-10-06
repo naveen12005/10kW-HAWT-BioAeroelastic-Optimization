@@ -1,0 +1,18 @@
+
+ PARAMETER STATUS- FREQ_MODE1  (      6 PARAMETERS DEFINED)
+                  (INCLUDING        2 INTERNAL PARAMETERS)
+
+ NAME                              VALUE                        TYPE  DIMENSIONS
+ FREQ_MODE1                        2.37529839                  SCALAR
+
+ PARAMETER STATUS- FREQ_MODE2  (      6 PARAMETERS DEFINED)
+                  (INCLUDING        2 INTERNAL PARAMETERS)
+
+ NAME                              VALUE                        TYPE  DIMENSIONS
+ FREQ_MODE2                        12.4480570                  SCALAR
+
+ PARAMETER STATUS- FREQ_MODE3  (      6 PARAMETERS DEFINED)
+                  (INCLUDING        2 INTERNAL PARAMETERS)
+
+ NAME                              VALUE                        TYPE  DIMENSIONS
+ FREQ_MODE3                        12.5919082                  SCALAR

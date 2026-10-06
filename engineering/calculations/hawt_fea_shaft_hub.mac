@@ -1,0 +1,61 @@
+! ==============================================================================
+! ANSYS MECHANICAL APDL MACRO: 10 kW HAWT MAIN ROTOR SHAFT & HUB FEA
+! Standards: ASME B106.1M / DIN 743 / IEC 61400-2 / ISO 281
+! Units: SI (m, kg, s, N, Pa)
+! ==============================================================================
+FINISH
+/CLEAR
+/FILNAME, hawt_shaft_hub_fea, 1
+/TITLE, 10 kW HAWT Main Shaft and Hub FEA Simulation
+
+/PREP7
+
+! --- 1. MATERIAL DEFINITIONS ---
+! Material 1: 42CrMo4+QT Quenched & Tempered Alloy Steel (Main Shaft)
+MP, EX,   1, 210.0E9    ! Young's Modulus [Pa]
+MP, NUXY, 1, 0.30       ! Poisson's Ratio
+MP, DENS, 1, 7850.0     ! Density [kg/m^3]
+
+! Material 2: EN-GJS-400-18-LT Ductile Cast Iron (Rotor Hub)
+MP, EX,   2, 169.0E9    ! Young's Modulus [Pa]
+MP, NUXY, 2, 0.28       ! Poisson's Ratio
+MP, DENS, 2, 7100.0     ! Density [kg/m^3]
+
+! --- 2. ELEMENT TYPES ---
+ET, 1, SOLID186         ! 20-node higher order 3D solid structural element
+ET, 2, BEAM188          ! 3D 2-node Timoshenko beam element (for shaft center axis)
+
+! --- 3. IMPORT STEP CAD GEOMETRY ---
+! STEP file located at C:\NaveenCADAgent\output\fea_hub_shaft.step
+~CAT5IN, 'C:\NaveenCADAgent\output\fea_hub_shaft', 'step'
+
+! Alternatively, in standard ANSYS:
+! /AUX15
+! IOPTN, IGES, NODEFEAT
+! IOPTN, MERGE, YES
+! IOPTN, SOLID, YES
+! STEPIN, 'C:\NaveenCADAgent\output\fea_hub_shaft', 'step'
+
+! --- 4. BOUNDARY CONDITIONS (BEARING SUPPORTS) ---
+! Front Bearing Seat (Y = +0.140 m):
+! Pin constraint in X, Y, Z (Locating Bearing)
+! Rear Bearing Seat (Y = -0.140 m):
+! Roller constraint in X, Z (Axially floating)
+
+! --- 5. MECHANICAL LOADS ---
+! Peak Torsion: T = 1693.5 N*m at shaft tail (Y = -0.510 m) reacting at rotor
+! Overhung Rotor Weight: W_rotor = 1520.6 N at Y = +0.520 m
+! Gyroscopic Yaw Moment: M_gyro = 1420.6 N*m
+! Axial Thrust: F_thrust = 1440.0 N (+Y direction)
+
+/SOLU
+ANTYPE, STATIC
+SOLVE
+FINISH
+
+/POST1
+SET, LAST
+PLNSOL, S, EQV          ! Plot Von Mises equivalent stress contour
+PLNSOL, U, SUM          ! Plot total displacement contour
+FINISH
+! ==============================================================================

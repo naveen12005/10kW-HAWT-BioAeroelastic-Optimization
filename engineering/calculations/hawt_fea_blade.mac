@@ -1,0 +1,68 @@
+! ==============================================================================
+! ANSYS APDL SCRIPT: HAWT 10 kW ROTOR BLADE FEA (STATIC & MODAL)
+! Component: output/fea_blade_naca4412.step
+! Solvers: Static Stress (DLC 1.1) + Block Lanczos Modal Extraction
+! ==============================================================================
+
+/BATCH
+/TITLE, HAWT 10 kW Rotor Blade Structural & Modal FEA
+/FILNAME, hawt_blade_fea, 1
+
+/PREP7
+! 1. MATERIAL DEFINITION (E-Glass / Epoxy Composite)
+MPTEMP, 1, 0
+MPDATA, EX, 1,, 28.0E9       ! Young's Modulus: 28 GPa
+MPDATA, PRXY, 1,, 0.28       ! Poisson's Ratio
+MPDATA, DENS, 1,, 1850.0     ! Density: 1850 kg/m^3
+
+! 2. ELEMENT TYPE (10-Node Higher Order Quadratic Tetrahedral Solid)
+ET, 1, SOLID187
+
+! 3. IMPORT GEOMETRY FROM STEP
+~PARAIN, 'C:\NaveenCADAgent\output\fea_blade_naca4412', 'STEP', 'C:\NaveenCADAgent\output', ' ', 0
+
+! 4. MESHING
+ESIZE, 0.035                 ! 35 mm element size
+MSHKEY, 0                    ! Free tetrahedral meshing
+VMESH, ALL
+
+! 5. BOUNDARY CONDITIONS (Fixed support at root flange face Z = 0.340 m)
+ASEL, S, LOC, Z, 0.339, 0.345
+DA, ALL, ALL, 0.0            ! All DOFs fixed at root flange
+ALLSEL, ALL
+
+! 6. CENTRIFUGAL LOAD (141 RPM = 14.765 rad/s about rotor axis)
+OMEGA, 0.0, 0.0, 14.765      ! Angular velocity about rotor axis
+
+! 7. SOLUTION - STATIC STRESS (DLC 1.1)
+/SOLU
+ANTYPE, STATIC
+PSTRES, ON                   ! Pre-stress effect for modal run
+SOLVE
+FINISH
+
+! 8. POST-PROCESSING - STATIC PLOTS
+/POST1
+SET, LAST
+/SHOW, PNG
+/GFILE, 1200
+PLNSOL, S, EQV               ! Plot Von Mises equivalent stress
+PLNSOL, U, SUM               ! Plot total displacement
+FINISH
+
+! 9. MODAL ANALYSIS (Block Lanczos Method, 6 Modes)
+/SOLU
+ANTYPE, MODAL
+MODOPT, LANB, 6, 0.1, 100.0  ! Extract 6 modes between 0.1 and 100 Hz
+PSTRES, ON                   ! Include centrifugal stiffening
+SOLVE
+FINISH
+
+/POST1
+SET, 1, 1
+PLNSOL, U, SUM               ! Plot Mode 1 shape
+SET, 1, 2
+PLNSOL, U, SUM               ! Plot Mode 2 shape
+FINISH
+
+/EXIT

@@ -1,0 +1,18 @@
+
+ PARAMETER STATUS- MAX_FLANGE_DEF  (      3 PARAMETERS DEFINED)
+                  (INCLUDING        2 INTERNAL PARAMETERS)
+
+ NAME                              VALUE                        TYPE  DIMENSIONS
+ MAX_FLANGE_DEF                   1.866828437E-004             SCALAR
+
+ PARAMETER STATUS- FRONT_BRG_RADIAL  (      3 PARAMETERS DEFINED)
+                  (INCLUDING        2 INTERNAL PARAMETERS)
+
+ *** NOTE ***                            ELAPSED TIME =       7.694   TIME= 23:03:15
+ Parameter name ( FRONT_BRG_RADIAL ) on *STAT command is undefined.      
+
+ PARAMETER STATUS- REAR_BRG_RADIAL  (      3 PARAMETERS DEFINED)
+                  (INCLUDING        2 INTERNAL PARAMETERS)
+
+ *** NOTE ***                            ELAPSED TIME =       7.694   TIME= 23:03:15
+ Parameter name ( REAR_BRG_RADIAL ) on *STAT command is undefined.       

@@ -1,0 +1,12 @@
+
+ PARAMETER STATUS- MAX_TIP_DEF  (      3 PARAMETERS DEFINED)
+                  (INCLUDING        2 INTERNAL PARAMETERS)
+
+ *** NOTE ***                            ELAPSED TIME =       7.672   TIME= 23:01:35
+ Parameter name ( MAX_TIP_DEF ) on *STAT command is undefined.           
+
+ PARAMETER STATUS- ROOT_REACTION  (      3 PARAMETERS DEFINED)
+                  (INCLUDING        2 INTERNAL PARAMETERS)
+
+ NAME                              VALUE                        TYPE  DIMENSIONS
+ ROOT_REACTION                    -1440.00000                  SCALAR
