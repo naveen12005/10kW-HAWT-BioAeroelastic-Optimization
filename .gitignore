@@ -31,3 +31,7 @@ Thumbs.db
 
 # Siemens NX in-memory translator parts (can be re-imported anytime from STEP)
 output/*.prt
+
+# Nested independent project repositories
+ev-800v-bms-thermal-controller/
+
