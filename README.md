@@ -164,3 +164,15 @@ python engineering/calculations/generate_docx_portfolio.py
 - **Engineer / Lead Designer:** RATHLAVATH NAVEEN
 - **Email:** [rathlavathnaveen90@gmail.com](mailto:rathlavathnaveen90@gmail.com)
 - **Toolchain:** CadQuery 2.8, OpenCASCADE 7.9, Siemens NX, ANSYS Mechanical APDL 2026 R1, Python.
+
+---
+
+## ⚖️ License & Intellectual Property Protection
+**Copyright © 2026 RATHLAVATH NAVEEN. All Rights Reserved.**
+
+This repository and all associated assets (including 3D CAD STEP models, finite element simulation files, analytical models, technical drawings, and documentation) are protected under international copyright law and the **Proprietary Portfolio Evaluation License** (incorporating CC BY-NC-ND 4.0 terms).
+
+* **Permitted Use:** Granted strictly for read-only inspection, portfolio evaluation, academic review, and recruitment/hiring assessment.
+* **Prohibited Use:** No unauthorized redistribution, no commercial manufacturing or fabrication, no derivative works, and **no academic plagiarism**.
+* See the full [LICENSE](LICENSE) file for complete legal terms.
+
