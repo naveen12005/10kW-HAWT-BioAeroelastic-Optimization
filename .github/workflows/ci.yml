@@ -1,0 +1,77 @@
+name: 10 kW HAWT Engineering CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify-and-test:
+    name: Verify Engineering Calculations, DFM Drawings & CAD Assets
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository with Git LFS
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Checkout LFS Objects
+        run: git lfs checkout
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Engineering Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy matplotlib python-docx
+
+      - name: Verify 3D CAD STEP Deliverables & Artifacts
+        run: |
+          echo "=== VERIFYING STEP CAD MODELS ==="
+          test -f "output/optimization of 10 kW HAWT.step" || { echo "Missing primary optimized assembly STEP"; exit 1; }
+          test -f "output/optimization_of_10_kW_HAWT.step" || { echo "Missing alt optimized assembly STEP"; exit 1; }
+          test -f "output/Anchor_Bolts_Helical_M24.step" || { echo "Missing helical anchor bolts STEP"; exit 1; }
+          test -f "output/Anchor_Bolt_Helical_M24_Single.step" || { echo "Missing single helical bolt STEP"; exit 1; }
+          test -f "output/hawt_10kw_turbine.step" || { echo "Missing baseline turbine STEP"; exit 1; }
+          test -f "output/optimization_of_10_kW_HAWT_blade.step" || { echo "Missing isolated blade STEP"; exit 1; }
+          echo "All CAD STEP models verified successfully!"
+
+      - name: Run Analytical Aerodynamic & Sizing Solvers
+        run: |
+          echo "=== RUNNING BEM & SIZING SOLVER ==="
+          python engineering/calculations/hawt_10kw_calculations.py
+
+      - name: Run Comparative FEA & Bend-Twist Coupling Solver
+        run: |
+          echo "=== RUNNING COMPARATIVE FEA SOLVER ==="
+          python engineering/calculations/fea_optimization_comparison.py
+
+      - name: Generate and Validate 2D Manufacturing Drawing Sheets
+        run: |
+          echo "=== GENERATING 2D MANUFACTURING DRAWINGS ==="
+          python engineering/calculations/generate_dfm_drawings.py
+          test -f "reports/portfolio_figures/fig7_dfm_blade_tooling_drawing.png" || exit 1
+          test -f "reports/portfolio_figures/fig8_dfm_shaft_machining_drawing.png" || exit 1
+          test -f "reports/portfolio_figures/fig9_dfm_tower_fabrication_drawing.png" || exit 1
+          echo "All 3 2D manufacturing drawings successfully generated and validated!"
+
+      - name: Compile and Validate Master Word Dossier (.docx)
+        run: |
+          echo "=== GENERATING MASTER WORD DOSSIER ==="
+          python engineering/calculations/generate_docx_portfolio.py
+          test -f "reports/HAWT_10kW_Engineering_Portfolio_Dossier.docx" || exit 1
+          echo "Master Word Dossier compiled and verified!"
+
+      - name: Verify Documentation & Reports Integrity
+        run: |
+          echo "=== VERIFYING DOCUMENTATION INTEGRITY ==="
+          test -f "reports/HAWT_10kW_Master_Portfolio_Dossier.md" || exit 1
+          test -f "reports/HAWT_10kW_Optimization_Mathematical_Analytical_Model.md" || exit 1
+          test -f "README.md" || exit 1
+          echo "All engineering documentation verified successfully!"
