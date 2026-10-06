@@ -34,4 +34,5 @@ output/*.prt
 
 # Nested independent project repositories
 ev-800v-bms-thermal-controller/
+k15b-can-telemetry-emulator/
 
