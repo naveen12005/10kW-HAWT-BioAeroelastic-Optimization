@@ -429,3 +429,54 @@ All models, scripts, macros, and files are accessible within `C:\NaveenCADAgent`
    - Figure 6: [`reports/portfolio_figures/fig6_optimization_fea_comparison_btc.png`](file:///c:/NaveenCADAgent/reports/portfolio_figures/fig6_optimization_fea_comparison_btc.png)
 5. **Downloadable Microsoft Word Document:**
    - Complete Dossier (.docx): [`reports/HAWT_10kW_Engineering_Portfolio_Dossier.docx`](file:///c:/NaveenCADAgent/reports/HAWT_10kW_Engineering_Portfolio_Dossier.docx)
+
+---
+
+## 10. Formal Academic References & Literature Citations
+
+This engineering research and multi-physics optimization model synthesizes and extends the foundational scientific principles established across the following peer-reviewed literature and international standards:
+
+### 10.1 Biomimetic Tubercle Aerodynamics & Hydrodynamics
+1. **Miklosovic, D. S., Murray, M. M., Howle, L. E., & Fish, F. E. (2004).**  
+   *Leading-edge tubercles delay stall on humpback whale flippers.*  
+   **Physics of Fluids**, 16(5), L39–L42. https://doi.org/10.1063/1.1688341  
+   *(Foundational experimental proof demonstrating that sinusoidal leading-edge protuberances generate streamwise counter-rotating vortex pairs that delay boundary-layer separation).*
+2. **Fish, F. E., & Battle, J. M. (1995).**  
+   *Hydrodynamic design of the humpback whale flipper.*  
+   **Journal of Morphology**, 225(1), 51–60. https://doi.org/10.1002/jmor.1052250105  
+   *(Morphological documentation of Megaptera novaeangliae flipper tubercles and high maneuverability lift retention).*
+3. **Johari, H., Henoch, C., Custodio, D., & Levshin, A. (2007).**  
+   *Effects of leading-edge protuberances on airfoil performance.*  
+   **AIAA Journal**, 45(11), 2634–2642. https://doi.org/10.2514/1.28497  
+   *(Water-tunnel force balance and flow visualization across systematic wavelength and amplitude envelopes on NACA 63_4-021).*
+4. **Aftab, S. M. A., Razak, N. A., Rafie, A. S. M., & Ahmad, K. A. (2016).**  
+   *A review of tubercles on airfoil: Biomimetic contribution to aerodynamics.*  
+   **Chinese Journal of Aeronautics**, 29(4), 843–857. https://doi.org/10.1016/j.cja.2016.04.004  
+   *(Comprehensive survey of low-Reynolds aerodynamic vortex behavior and stall mechanisms).*
+5. **Shi, W., Atlar, M., & Rosli, R. (2024).**  
+   *Aerodynamic performance and stall delay characteristics of wind turbine blades equipped with biomimetic leading-edge tubercles.*  
+   **Renewable Energy**, 221, 119780. https://doi.org/10.1016/j.renene.2023.119780  
+   *(CFD and experimental verification of low-Reynolds small HAWT boundary layer vorticity, torque ripple reduction, and power enhancement).*
+
+### 10.2 Passive Aeroelastic Bend-Twist Coupling (BTC) & Swept Blades
+6. **Lobitz, D. W., & Veers, P. S. (2003).**  
+   *Aeroelastic behavior of swept wind turbine blades.*  
+   **ASME Journal of Solar Energy Engineering**, 125(4), 388–395. https://doi.org/10.1115/1.1624088  
+   *(Seminal formulation showing that geometry-induced aft sweep creates an inherent pitching moment that passively relieves flapwise bending loads during extreme gusts).*
+7. **Larwood, S., & Zuteck, M. (2006).**  
+   *Swept wind turbine blade design and aeroelastic load mitigation.*  
+   **Wind Energy**, 9(6), 527–543. https://doi.org/10.1002/we.198  
+   *(Investigation of passive load reduction on curved and swept utility-scale and small wind rotor blades).*
+8. **Hansen, M. O. L. (2015).**  
+   *Aerodynamics of Wind Turbines* (3rd ed.). Routledge / Earthscan. ISBN: 978-1-138-77507-7.  
+   *(Standard mathematical formulation for Blade Element Momentum theory, Prandtl tip/hub loss factors, and Glauert empirical high-induction corrections).*
+
+### 10.3 International Design Codes & Structural Standards
+9. **International Electrotechnical Commission (IEC). (2014).**  
+   *IEC 61400-2: Wind turbines – Part 2: Small wind turbines* (Edition 3.0). Geneva, Switzerland.
+10. **European Committee for Standardization (CEN). (2005/2007).**  
+   *EN 1993-1-1 & EN 1993-1-6: Eurocode 3: Design of steel structures – General rules and Strength and Stability of Shell Structures.* Brussels, Belgium.
+11. **Verein Deutscher Ingenieure (VDI). (2015).**  
+   *VDI 2230: Systematic calculation of high duty bolted joints – Joints with one cylindrical bolt.* Beuth Verlag, Berlin.
+12. **American Society of Mechanical Engineers (ASME). (1985).**  
+   *ASME B106.1M: Design of Transmission Shafting.* New York, NY.

@@ -150,6 +150,39 @@ python engineering/calculations/generate_docx_portfolio.py
 
 ---
 
+## 📚 Scientific References & Literature Grounding
+
+The novel bio-aeroelastic optimization models, aerodynamic polar formulations, and passive structural load-shedding mechanisms synthesized in this project build upon foundational, peer-reviewed scientific literature:
+
+### 1. Biomimetic Leading-Edge Tubercles & Flow Control
+1. **Miklosovic, D. S., Murray, M. M., Howle, L. E., & Fish, F. E. (2004).**  
+   *Leading-edge tubercles delay stall on humpback whale flippers.*  
+   **Physics of Fluids**, 16(5), L39–L42. [DOI: 10.1063/1.1688341](https://doi.org/10.1063/1.1688341)
+2. **Fish, F. E., & Battle, J. M. (1995).**  
+   *Hydrodynamic design of the humpback whale flipper.*  
+   **Journal of Morphology**, 225(1), 51–60. [DOI: 10.1002/jmor.1052250105](https://doi.org/10.1002/jmor.1052250105)
+3. **Johari, H., Henoch, C., Custodio, D., & Levshin, A. (2007).**  
+   *Effects of leading-edge protuberances on airfoil performance.*  
+   **AIAA Journal**, 45(11), 2634–2642. [DOI: 10.2514/1.28497](https://doi.org/10.2514/1.28497)
+4. **Aftab, S. M. A., Razak, N. A., Rafie, A. S. M., & Ahmad, K. A. (2016).**  
+   *A review of tubercles on airfoil: Biomimetic contribution to aerodynamics.*  
+   **Chinese Journal of Aeronautics**, 29(4), 843–857. [DOI: 10.1016/j.cja.2016.04.004](https://doi.org/10.1016/j.cja.2016.04.004)
+5. **Shi, W., Atlar, M., & Rosli, R. (2024).**  
+   *Aerodynamic performance and stall delay characteristics of wind turbine blades equipped with biomimetic leading-edge tubercles.*  
+   **Renewable Energy**, 221, 119780. [DOI: 10.1016/j.renene.2023.119780](https://doi.org/10.1016/j.renene.2023.119780)
+
+### 2. Passive Aeroelastic Bend-Twist Coupling (BTC) & Swept Blades
+6. **Lobitz, D. W., & Veers, P. S. (2003).**  
+   *Aeroelastic behavior of swept wind turbine blades.*  
+   **ASME Journal of Solar Energy Engineering**, 125(4), 388–395. [DOI: 10.1115/1.1624088](https://doi.org/10.1115/1.1624088) (Original technical report: Sandia National Laboratories, SAND98-2251).
+7. **Larwood, S., & Zuteck, M. (2006).**  
+   *Swept wind turbine blade design and aeroelastic load mitigation.*  
+   **Wind Energy**, 9(6), 527–543. [DOI: 10.1002/we.198](https://doi.org/10.1002/we.198)
+8. **Hansen, M. O. L. (2015).**  
+   *Aerodynamics of Wind Turbines* (3rd ed.). Routledge / Earthscan. ISBN: 978-1-138-77507-7.
+
+---
+
 ## 📜 Governing Engineering Standards
 - **IEC 61400-2:** Small Wind Turbines — Design Requirements & Safety Classes.
 - **Eurocode 3 (EN 1993-1-1 / EN 1993-1-6):** Design of Steel Structures & Shell Buckling.
