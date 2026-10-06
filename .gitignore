@@ -10,12 +10,18 @@ __pycache__/
 *$py.class
 *.pytest_cache/
 
-# Temporary simulation and log files
+# Simulation scratch files & caches
+ansys_work/
+nx_journals/
 *.log
 *.err
 *.out
 *.db
 scratch/
+
+# Internal system files
+AGENT_RULES.md
+NX_ENVIRONMENT_REPORT.md
 
 # OS and Editor metadata
 .DS_Store

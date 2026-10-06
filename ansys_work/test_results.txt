@@ -1,6 +1,0 @@
-
- PARAMETER STATUS- MAX_DEF  (      3 PARAMETERS DEFINED)
-                  (INCLUDING        2 INTERNAL PARAMETERS)
-
- NAME                              VALUE                        TYPE  DIMENSIONS
- MAX_DEF                         -3.252161103E-004             SCALAR
